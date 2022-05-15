@@ -1,5 +1,5 @@
 const defaultState = {
-    spin: false
+    status: true
 }
 
 const SPIN_STATUS = "SPIN_STATUS"
@@ -7,10 +7,10 @@ const SPIN_STATUS = "SPIN_STATUS"
 export const spinReducer= (state = defaultState, action) => {
     switch (action.type) {
         case SPIN_STATUS:
-            return state
+            return {...state, status: action.payload}
         default:
             return state
     }
 }
 
-export const spinStatus = (payload) => ({type: SPIN_STATUS, payload})
+export const changeSpinStatus = (payload) => ({type: SPIN_STATUS, payload})

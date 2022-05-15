@@ -3,7 +3,7 @@
         {
             "id": 1,
             "nameStation":"Текстильщики",
-            "coors": [55.7092094, 37.7332191], 
+            "coors": [55.727593, 37.756233], 
             "isDone": true,
             "img": "http://i.stack.imgur.com/lz6d6.png"
         },
