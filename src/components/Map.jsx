@@ -1,19 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
-import {
-  MapContainer,
-  Marker,
-  Popup,
-  SVGOverlay,
-  TileLayer,
-} from "react-leaflet";
+import { MapContainer, SVGOverlay, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "../App.css";
-import UploadForm from "./UI/UploadForm/UploadForm";
-import CustomMarker from "./CustomMarker/CustomMarker";
+import CustomMarker from "./Map/CustomMarker";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchStations } from "../asyncActions/stations";
 import { ReactComponent as MetroMap } from "../img/metro-map.svg";
+import Markers from "./Map/Markers";
 
 const Map = () => {
   // const centerPosition = [55.7522, 37.6156]; //позиция центра
@@ -23,18 +16,6 @@ const Map = () => {
     [55.51405, 36.979854],
     [56.010436, 38.276633],
   ];
-  const stations = useSelector((state) => {
-    return state.stations.stations;
-  });
-
-  const stationsList = useMemo(() => {
-    if (stations.length) {
-      return stations.map((station) => (
-        <CustomMarker marker={station} key={station.id} />
-      ));
-    }
-    return <></>;
-  }, [stations]);
 
   return (
     <MapContainer
@@ -54,7 +35,7 @@ const Map = () => {
       <SVGOverlay bounds={bounds}>
         <MetroMap />
       </SVGOverlay>
-      {stationsList}
+      <Markers/>
     </MapContainer>
   );
 };
