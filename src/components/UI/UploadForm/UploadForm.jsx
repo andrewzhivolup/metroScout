@@ -3,9 +3,7 @@ import testimg from '../../../img/station-test-img.jpg';
 import { Switch } from 'antd';
 import 'antd/dist/antd.css';
 
-
 const UploadForm = () => {
-  
   function onChange(checked) {
     console.log(`switch to ${checked}`);
     
@@ -14,6 +12,7 @@ const UploadForm = () => {
     return (
     <div>
       <Switch defaultChecked onChange={onChange} />
+      
     </div>
   );
 };

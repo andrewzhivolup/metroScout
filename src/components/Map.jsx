@@ -1,31 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "../App.css";
 import UploadForm from "./UI/UploadForm/UploadForm";
 import CustomMarker from "./CustomMarker/CustomMarker";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchStations } from "../asyncActions/stations";
 
-const Map = ({stations}) => {
+const Map = () => {
   // const centerPosition = [55.7522, 37.6156]; //позиция центра
   const centerPosition = [55.7092094, 37.7332191];
   const zoom = 13; //первоначальный зум
+  const dispatch = useDispatch();
+  const stations = useSelector((state) => {
+    console.log(state.stations.stations);
+    return state.stations.stations;
+  });
 
   useEffect(() => {
-    L.map.on("zoomend", onZoomEnd);
-    return () => {
-      L.map.off("zoomend", onZoomEnd);
-    };
+    dispatch(fetchStations());
   }, []);
-  
 
-  const onZoomEnd = (e) => {
-    document.title = `Вы`;
-  };
+  const stationsList = useMemo(() => {
+    if (stations.length) {
+      return stations.map((station) => (
+        <CustomMarker marker={station} key={station.id} />
+      ));
+    }
+    return <></>;
+  }, [stations]);
 
   return (
     <div>
-      <button onClick={console.log('')}>test</button>
       <MapContainer
         className="leaflet-container"
         center={centerPosition}
@@ -37,9 +44,7 @@ const Map = ({stations}) => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {stations.map( station =>
-      <CustomMarker marker = {station} key={station.id}/>  
-        )}
+        {stationsList}
       </MapContainer>
     </div>
   );

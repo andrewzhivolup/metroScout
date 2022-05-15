@@ -16,8 +16,9 @@ const CustomMarker = (props) => {
 
   function onChange(checked) {
     console.log(`switch to ${checked}`);
-
   }
+
+
   return (
     <Marker
       id={props.marker.id}
@@ -27,7 +28,8 @@ const CustomMarker = (props) => {
       <Popup>
         {props.marker.nameStation}
         <br/>
-        <Switch defaultChecked={props.marker.isDone} onChange={onChange} />        
+        <Switch defaultChecked={props.marker.isDone} onChange={onChange} />
+        <img width={100} src={props.marker.img} alt="альтернативный текст"></img>
       </Popup>
     
     </Marker>

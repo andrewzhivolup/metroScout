@@ -4,13 +4,16 @@
             "id": 1,
             "nameStation":"Текстильщики",
             "coors": [55.7092094, 37.7332191], 
-            "isDone": false
+            "isDone": true,
+            "img": "http://i.stack.imgur.com/lz6d6.png"
         },
+
         {
             "id": 2,
             "nameStation":"Кузьминки",
             "coors": [55.7055473, 37.7662201], 
-            "isDone": false
+            "isDone": false,
+            "img": "/img/station-test-img.jpg"
         }
     ]
 }
