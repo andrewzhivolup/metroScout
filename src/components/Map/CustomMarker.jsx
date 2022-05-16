@@ -1,35 +1,33 @@
 import React, { useEffect, useState } from "react";
 import L from "leaflet";
-import { Marker, Popup, useMap } from "react-leaflet";
-import CustomMarkerSvgFalse from "../../../src/img/pin-false.svg";
-import CustomMarkerSvgTrue from "../../../src/img/pin-true.svg";
+import { Circle, Marker, Popup, useMap } from "react-leaflet";
+import CustomMarkerSvgFalse from "../../../src/img/circle-false.svg";
+import CustomMarkerSvgTrue from "../../../src/img/circle-true.svg";
 
-const CustomMarker = (props) => {
-  
-  const [sizeMarker, setSizeMarker] = useState(75)
-  const SwapDefaultPin = new L.Icon({
-    iconUrl: props.marker.isDone ? CustomMarkerSvgTrue : CustomMarkerSvgFalse,
-    iconSize: [sizeMarker, sizeMarker],
-  });
-
-  
-
+const CustomMarker = ({ marker }) => {
+  const falseCircle = { //цвета маркера если станция посещена 
+    color: "#BA0F08",
+    fillColor: "#E32636",
+  };
+  const trueCircle = { //цвета маркера если станция непосещена 
+    color: "#306934",
+    fillColor: "#44944A",
+  };
   return (
-    <Marker
-      id={props.marker.id}
-      position={props.marker.coors}
-      icon={SwapDefaultPin}
+    <Circle
+      id={marker.id}
+      center={marker.coors}
+      radius={190}
+      pathOptions={marker.isDone?trueCircle:falseCircle}
+      opacity={1}
+      fillOpacity={1}
     >
       <Popup>
-        {props.marker.nameStation}
+        {marker.nameStation}
         <br />
-        <img
-          width={100}
-          src={props.marker.img}
-          alt="альтернативный текст"
-        ></img>
+        <img width={100} src={marker.img} alt="альтернативный текст"></img>
       </Popup>
-    </Marker>
+    </Circle>
   );
 };
 

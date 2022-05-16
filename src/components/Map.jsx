@@ -10,7 +10,8 @@ import Markers from "./Map/Markers";
 
 const Map = () => {
   // const centerPosition = [55.7522, 37.6156]; //позиция центра
-  const centerPosition = [55.7092094, 37.7332191];
+
+  const centerPosition = [55.71976258415723, 37.86163330078126];
   const zoom = 13; //первоначальный зум
   const bounds = [
     [55.51405, 36.979854],
@@ -33,7 +34,7 @@ const Map = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       /> */}
       <SVGOverlay bounds={bounds}>
-        <MetroMap />
+        <MetroMap/>
       </SVGOverlay>
       <Markers/>
     </MapContainer>

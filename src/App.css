@@ -4,6 +4,7 @@ body,
     width: 100wh; 
     height: 100vh;
     background: white;
+    margin: 0%;
   }
 
 .App__title{
