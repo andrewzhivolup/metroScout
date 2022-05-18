@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import L from "leaflet";
 import { Circle, Marker, Popup, useMap } from "react-leaflet";
-import CustomMarkerSvgFalse from "../../../src/img/circle-false.svg";
-import CustomMarkerSvgTrue from "../../../src/img/circle-true.svg";
 
 const CustomMarker = ({ marker }) => {
   const falseCircle = { //цвета маркера если станция посещена 

@@ -1,18 +1,14 @@
-import React, { useEffect, useMemo, useState } from "react";
 import { MapContainer, SVGOverlay, useMap } from "react-leaflet";
-import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "../App.css";
-import CustomMarker from "./Map/CustomMarker";
-import { useDispatch, useSelector } from "react-redux";
 import { ReactComponent as MetroMap } from "../img/metro-map.svg";
 import Markers from "./Map/Markers";
 
 const Map = () => {
-  // const centerPosition = [55.7522, 37.6156]; //позиция центра
-
-  const centerPosition = [55.71976258415723, 37.86163330078126];
-  const zoom = 13; //первоначальный зум
+  const centerPosition = [55.794381694500615, 37.69666671752925]; //позиция центра
+  const zoom = 11; //первоначальный зум
+  const tempCenterPosition = [55.71976258415723, 37.86163330078126]; //временный центр
+  const tempZoom = 13; //временный зум
   const bounds = [
     [55.51405, 36.979854],
     [56.010436, 38.276633],
@@ -21,8 +17,8 @@ const Map = () => {
   return (
     <MapContainer
       className="leaflet-container"
-      center={centerPosition}
-      zoom={zoom}
+      center={tempCenterPosition} 
+      zoom={tempZoom}
       scrollWheelZoom={true}
       attributionControl={false} //убирает атрибуты (флаг)
       maxBounds={bounds}
